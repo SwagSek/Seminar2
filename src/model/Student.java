@@ -4,7 +4,7 @@ public class Student {
 	private long stID;
 	private String name;
 	private String surname;
-	private static long counter = 0;
+	private static long counter = 10000;
 	
 	public long getStID() {
 		return stID;
@@ -36,7 +36,7 @@ public class Student {
 		}
 		else this.surname = "Undefined";
 	}
-
+	
 	public Student() {
 		setStID();
 		setName("");

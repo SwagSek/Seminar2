@@ -65,4 +65,9 @@ public class Professor {
 		setSurname(surname);
 		setDegree(degree);
 	}
+	
+	//toString
+	public String toString() {
+		return pID + ": " + degree + ", " + name + " " + surname;
+	}
 }
