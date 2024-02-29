@@ -29,28 +29,30 @@ public class Course {
 	}
 	
 	public void setTitle(String title) {
-		if (title != null && title.matches("[A-Za-z 0-9]{4,40}")) {
+		if (title != null && title.matches("[A-Za-z 0-9]{4,40}"))
 			this.title = title;
-		}
+		else
+			this.title = "Undefined";
 	}
 	
 	public void setCreditPoints(int creditPoints) {
-		if (creditPoints > 0 && creditPoints <= 20) {
+		if (creditPoints > 0 && creditPoints <= 20)
 			this.creditPoints = creditPoints;
-		}
+		else this.creditPoints = 2;
 	}
 	
 	public void setProfessor(Professor professor) {
-		if (professor != null) {
+		if (professor != null)
 			this.professor = professor;
-		}
+		else
+			this.professor = new Professor();
 	}
 
 	public Course() {
 		setcID();
 		setTitle("");
 		setCreditPoints(0);
-		setProfessor(null);
+		setProfessor(new Professor());
 	}
 	
 	public Course(String title, int creditPoints, Professor professor) {
@@ -61,7 +63,7 @@ public class Course {
 	}
 
 	public String toString() {
-		return "Course [cID=" + cID + ", title=" + title + ", creditPoints=" + creditPoints + ", professor=" + professor.getName()
+		return "Course [cID=" + cID + ", title=" + title + ", creditPoints=" + creditPoints + ", professor=" + professor.getName() + " " + professor.getSurname()
 				+ "]";
 	}
 }

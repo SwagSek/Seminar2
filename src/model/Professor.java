@@ -54,8 +54,8 @@ public class Professor {
 	//Constructors
 	public Professor () {
 		setpID();
-		setName("Janis");
-		setSurname("Berzins");
+		setName("");
+		setSurname("");
 		setDegree(Degree.other);
 	}
 	
