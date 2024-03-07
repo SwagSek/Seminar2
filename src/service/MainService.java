@@ -16,8 +16,8 @@ public class MainService {
 	private static ArrayList<Grade> allGrades = new ArrayList<Grade>();
 	
 	public static void main(String[] args) {
-		Professor pr1 = new Professor("Galina", "Hilkevica", Degree.phd);
-		Professor pr2 = new Professor("Karina", "Skirmante", Degree.mg);
+		Professor pr1 = new Professor("Galina", "Hilkevica", "642859-19234", Degree.phd);
+		Professor pr2 = new Professor("Karina", "Skirmante", "594868-29134", Degree.mg);
 		allProfessors.add(pr1);
 		allProfessors.add(pr2);
 		for(Professor professor : allProfessors) {
