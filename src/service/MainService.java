@@ -51,6 +51,28 @@ public class MainService {
 		for(Grade grade : allGrades) {
 			System.out.println(grade);
 		}
+		
+		try {
+			System.out.println(stu2.getName() + " " + stu2.getSurname() + ": " + calculateAvgGradeByStudent(stu2));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public static float calculateAvgGradeByStudent(Student student) throws Exception {
+		if (student == null) throw new Exception("Problem with input argument.");
+		
+		float sum = 0;
+		int howMany = 0;
+		
+		for (Grade grade : allGrades) {
+			if(grade.getStudent().equals(student) ) {
+				sum += grade.getValue();
+				howMany++;
+			}
+		}
+		if(howMany == 0) throw new Exception("There is no grade for this student.");
+		return sum/howMany;
 	}
 
 }
