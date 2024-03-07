@@ -57,12 +57,24 @@ public class MainService {
 			System.out.println(stu2.getName() + " " + stu2.getSurname() + ": " + calculateAvgGradeByStudent(stu2));
 			System.out.println(c2.getTitle() + ": " + avgGradeForCourse(c2));
 			System.out.println(pr2.getName() + " " + pr2.getSurname() + ": " + howManyCoursesByProf(pr2));
-			createNewStudent("Eduards", "Pastars", "643453-18343");
-			createNewStudent("Klavs", "Grinvalds", "753456-85533");
+			createNewStudent("Eduards", "Pastars", "643853-18343");
+			updateStudentByPersonCode("643853-18343", "Kalnins");
 		} 
 		catch (Exception e) {
 			System.out.println(e);
 		}
+		
+		for(Student student : allStudents) {
+			System.out.println(student);
+		}
+		
+		try {
+			deleteStudentByPersonCode("753456-85533");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+		}
+		
 		for(Student student : allStudents) {
 			System.out.println(student);
 		}
@@ -132,8 +144,32 @@ public class MainService {
 	public static Student retrieveStudentByPersonCode(String personCode) throws Exception {
 		if (personCode == null) throw new Exception("Invalid input value.");
 		for (Student student : allStudents) {
-			if (student.getPersonCode().matches(personCode))
+			if (student.getPersonCode().equals(personCode))
 				return student;
+		}
+		throw new Exception("Student with given person code not found.");
+	}
+	
+	//Update
+	public static void updateStudentByPersonCode(String personCode, String newSurname) throws Exception {
+		if (personCode == null || newSurname == null) throw new Exception("Invalid input value.");
+		for (Student student : allStudents) {
+			if (student.getPersonCode().equals(personCode))
+			{
+				student.setSurname(newSurname);
+				return;
+			}
+		}
+		throw new Exception("Student with given person code not found.");
+	} 
+	//Delete
+	public static void deleteStudentByPersonCode(String personCode) throws Exception {
+		if (personCode == null) throw new Exception("Invalid input value.");
+		for (Student student : allStudents) {
+			if (student.getPersonCode().equals(personCode)) {
+				allStudents.remove(student);
+				return;
+			}
 		}
 		throw new Exception("Student with given person code not found.");
 	}
