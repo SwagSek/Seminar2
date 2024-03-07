@@ -24,7 +24,7 @@ public class MainService {
 			System.out.println(professor);
 		}
 		
-		Student stu1 = new Student();
+		Student stu1 = new Student("Elvijs", "Leistmanis");
 		Student stu2 = new Student("Klavs", "Grinvalds");
 		
 		allStudents.add(stu1);
@@ -43,7 +43,7 @@ public class MainService {
 		
 		Grade g1 = new Grade();
 		Grade g2 = new Grade(10, stu2, c2);
-		Grade g3 = new Grade(7, stu2, c1);
+		Grade g3 = new Grade(5, stu1, c2);
 		allGrades.add(g1);
 		allGrades.add(g2);
 		allGrades.add(g3);
@@ -54,6 +54,20 @@ public class MainService {
 		
 		try {
 			System.out.println(stu2.getName() + " " + stu2.getSurname() + ": " + calculateAvgGradeByStudent(stu2));
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		try {
+			System.out.println(c2.getTitle() + ": " + avgGradeForCourse(c2));
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		try {
+			System.out.println(howManyCoursesByProf(pr2));
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -74,5 +88,32 @@ public class MainService {
 		if(howMany == 0) throw new Exception("There is no grade for this student.");
 		return sum/howMany;
 	}
-
+	
+	public static float avgGradeForCourse(Course course) throws Exception {
+		if (course == null) throw new Exception("Problem with input argument.");
+		
+		float sum = 0;
+		int howMany = 0;
+		
+		for (Grade grade : allGrades) {
+			if(grade.getCourse().equals(course) ) {
+				sum += grade.getValue();
+				howMany++;
+			}
+		}
+		if(howMany == 0) throw new Exception("There is no grade for this course.");
+		return sum/howMany;
+	}
+	
+	public static int howManyCoursesByProf(Professor professor) throws Exception {
+		if (professor == null) throw new Exception("Problem with input argument.");
+		
+		int howMany = 0;
+		for(Course course : allCourses) {
+			if(course.getProfessor().equals(professor)) {
+				howMany++;
+			}
+		}
+		return howMany;
+	}
 }
