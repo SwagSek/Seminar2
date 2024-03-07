@@ -29,8 +29,12 @@ public class MainService {
 		
 		allStudents.add(stu1);
 		allStudents.add(stu2);
-		for(Student student : allStudents) {
-			System.out.println(student);
+		
+		try {
+			System.out.println(retrieveStudentByPersonCode("122366-75043"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
 		}
 		
 		Course c1 = new Course("Objektoorienteta Programesana", 4, pr2);
@@ -53,9 +57,14 @@ public class MainService {
 			System.out.println(stu2.getName() + " " + stu2.getSurname() + ": " + calculateAvgGradeByStudent(stu2));
 			System.out.println(c2.getTitle() + ": " + avgGradeForCourse(c2));
 			System.out.println(pr2.getName() + " " + pr2.getSurname() + ": " + howManyCoursesByProf(pr2));
+			createNewStudent("Eduards", "Pastars", "643453-18343");
+			createNewStudent("Klavs", "Grinvalds", "753456-85533");
 		} 
 		catch (Exception e) {
 			System.out.println(e);
+		}
+		for(Student student : allStudents) {
+			System.out.println(student);
 		}
 	}
 	
@@ -64,7 +73,6 @@ public class MainService {
 		
 		float sum = 0;
 		int howMany = 0;
-		
 		for (Grade grade : allGrades) {
 			if(grade.getStudent().equals(student) ) {
 				sum += grade.getValue();
@@ -118,6 +126,15 @@ public class MainService {
 		
 		Student newStudent = new Student(name, surname, personCode);
 		allStudents.add(newStudent);
+		
 	}
-	
+	//Retrieve
+	public static Student retrieveStudentByPersonCode(String personCode) throws Exception {
+		if (personCode == null) throw new Exception("Invalid input value.");
+		for (Student student : allStudents) {
+			if (student.getPersonCode().matches(personCode))
+				return student;
+		}
+		throw new Exception("Student with given person code not found.");
+	}
 }
