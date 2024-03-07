@@ -104,6 +104,20 @@ public class MainService {
 	}
 	
 	//CRUD create - retrieve - update - delete
-	
+	//Create
+	public static void createNewStudent(String name, String surname, String personCode) throws Exception {
+		if(name == null || surname == null || personCode == null) {
+			throw new Exception("Invalid input value.");
+		}
+		
+		for(Student student : allStudents) {
+			if(student.getPersonCode().equals(personCode)) {
+				throw new Exception(student.getName() + " " + student.getSurname() + " is already registered.");
+			}
+		}
+		
+		Student newStudent = new Student(name, surname, personCode);
+		allStudents.add(newStudent);
+	}
 	
 }
