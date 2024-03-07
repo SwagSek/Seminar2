@@ -16,7 +16,7 @@ public class MainService {
 	private static ArrayList<Grade> allGrades = new ArrayList<Grade>();
 	
 	public static void main(String[] args) {
-		Professor pr1 = new Professor();
+		Professor pr1 = new Professor("Galina", "Hilkevica", Degree.phd);
 		Professor pr2 = new Professor("Karina", "Skirmante", Degree.mg);
 		allProfessors.add(pr1);
 		allProfessors.add(pr2);
@@ -24,8 +24,8 @@ public class MainService {
 			System.out.println(professor);
 		}
 		
-		Student stu1 = new Student("Elvijs", "Leistmanis");
-		Student stu2 = new Student("Klavs", "Grinvalds");
+		Student stu1 = new Student("Elvijs", "Leistmanis", "122366-75343");
+		Student stu2 = new Student("Klavs", "Grinvalds", "753456-85533");
 		
 		allStudents.add(stu1);
 		allStudents.add(stu2);
@@ -33,7 +33,7 @@ public class MainService {
 			System.out.println(student);
 		}
 		
-		Course c1 = new Course();
+		Course c1 = new Course("Objektoorienteta Programesana", 4, pr2);
 		Course c2 = new Course("Programmesana timekli JAVA", 4, pr2);
 		allCourses.add(c1);
 		allCourses.add(c2);
@@ -41,34 +41,20 @@ public class MainService {
 			System.out.println(course);
 		}
 		
-		Grade g1 = new Grade();
 		Grade g2 = new Grade(10, stu2, c2);
-		Grade g3 = new Grade(5, stu1, c2);
+		Grade g1 = new Grade(5, stu1, c2);
 		allGrades.add(g1);
 		allGrades.add(g2);
-		allGrades.add(g3);
-		System.out.println(g2);
 		for(Grade grade : allGrades) {
 			System.out.println(grade);
 		}
 		
 		try {
 			System.out.println(stu2.getName() + " " + stu2.getSurname() + ": " + calculateAvgGradeByStudent(stu2));
-		} 
-		catch (Exception e) {
-			System.out.println(e);
-		}
-		
-		try {
 			System.out.println(c2.getTitle() + ": " + avgGradeForCourse(c2));
+			System.out.println(pr2.getName() + " " + pr2.getSurname() + ": " + howManyCoursesByProf(pr2));
 		} 
 		catch (Exception e) {
-			System.out.println(e);
-		}
-		
-		try {
-			System.out.println(howManyCoursesByProf(pr2));
-		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
@@ -116,4 +102,8 @@ public class MainService {
 		}
 		return howMany;
 	}
+	
+	//CRUD create - retrieve - update - delete
+	
+	
 }

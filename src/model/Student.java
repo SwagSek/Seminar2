@@ -5,6 +5,7 @@ public class Student {
 	private String name;
 	private String surname;
 	private static long counter = 10000;
+	private String personCode;
 	
 	public long getStID() {
 		return stID;
@@ -37,19 +38,33 @@ public class Student {
 		else this.surname = "Undefined";
 	}
 	
+	
+	public String getPersonCode() {
+		return personCode;
+	}
+
+	public void setPersonCode(String personCode) {
+		if (personCode != null && personCode.matches("[0-9]{6}-[0-9]{5}"))
+			this.personCode = personCode;
+		else
+			this.personCode = "Undefined";
+	}
+
 	public Student() {
 		setStID();
 		setName("");
 		setSurname("");
+		setPersonCode("");
 	}
 	
-	public Student(String name, String surname) {
+	public Student(String name, String surname, String personCode) {
 		setStID();
 		setName(name);
 		setSurname(surname);
+		setPersonCode(personCode);
 	}
 
 	public String toString() {
-		return "Student [stID=" + stID + ", name=" + name + ", surname=" + surname + "]";
+		return "Student [stID=" + stID + ", name=" + name + ", surname=" + surname + ", personCode=" + personCode + "]";
 	}
 }
